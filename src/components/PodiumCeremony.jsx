@@ -99,16 +99,14 @@ const PodiumCeremony = ({ teams, roundNumber, isFinalRound, isFinale, onNext, on
       initial="hidden"
       animate="visible"
     >
+      <div className="podium-bg-glow" />
+
       <div className="podium-header">
-        <motion.div variants={trophyVariants} initial="hidden" animate="visible">
-          <Trophy size={80} color="#FFD700" style={{ filter: 'drop-shadow(0 4px 10px rgba(255, 215, 0, 0.4))' }} />
-        </motion.div>
-        
         <motion.h1 
           className="podium-title"
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ delay: 1, duration: 0.5 }}
+          initial={{ scale: 0.9, opacity: 0, y: -20 }}
+          animate={{ scale: 1, opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 1, ease: "easeOut" }}
         >
           {isFinale ? 'Quiz Champion' : `Round ${roundNumber} Complete`}
         </motion.h1>
@@ -121,136 +119,175 @@ const PodiumCeremony = ({ teams, roundNumber, isFinalRound, isFinale, onNext, on
         />
       )}
 
-      <div className="podium-stage">
-        {/* 2nd Place */}
-        {secondPlace && (
-          <div className="podium-column">
-            <motion.div 
-              className="team-card"
-              initial={{ y: -50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 2.8, type: "spring", bounce: 0.4 }}
-            >
+      {isFinale ? (
+        <div className="podium-stage">
+          {/* 2nd Place */}
+          {secondPlace && (
+            <div className="podium-column">
               <motion.div 
-                className="team-medal"
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 3.2 }}
+                className="team-card"
+                initial={{ y: -30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 2.2, duration: 0.8, ease: "easeOut" }}
               >
-                <Medal size={32} color="#C0C0C0" />
+                <motion.div 
+                  className="team-medal"
+                  initial={{ scale: 0, rotate: -180 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  transition={{ delay: 2.5, type: "spring", bounce: 0.5 }}
+                >
+                  <Medal size={36} color="#94A3B8" />
+                </motion.div>
+                {isTie1 && <span className="tie-badge">Tie for 1st</span>}
+                <div className="team-name">{secondPlace.name}</div>
+                <div className="team-score">
+                  <Counter from={0} to={secondPlace.score} delay={2.8} />
+                </div>
               </motion.div>
-              {isTie1 && <span className="tie-badge">Tie for 1st</span>}
-              <div className="team-color-indicator" style={{ background: secondPlace.color }} />
-              <div className="team-name">{secondPlace.name}</div>
-              <div className="team-score">
-                <Counter from={0} to={secondPlace.score} delay={3.5} />
-              </div>
-            </motion.div>
 
-            <motion.div 
-              className="podium-block podium-block-2"
-              initial={{ height: 0 }}
-              animate={{ height: 180 }}
-              transition={{ delay: 2.2, duration: 0.8, ease: "easeOut" }}
-            >
-              <span className="podium-rank-text">2</span>
-            </motion.div>
-          </div>
-        )}
-
-        {/* 1st Place */}
-        {firstPlace && (
-          <div className="podium-column" style={{ zIndex: 10 }}>
-            <motion.div 
-              className="team-card"
-              style={{ padding: '2rem' }}
-              initial={{ y: -50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 2.5, type: "spring", bounce: 0.4 }}
-            >
               <motion.div 
-                className="team-medal"
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 3 }}
+                className="podium-block podium-block-2"
+                initial={{ height: 0 }}
+                animate={{ height: 160 }}
+                transition={{ delay: 1.5, duration: 1, ease: "easeOut" }}
               >
-                <Trophy size={48} color="#FFD700" />
+                <span className="podium-rank-text">2</span>
               </motion.div>
-              {isTie1 && <span className="tie-badge">Tie for 1st</span>}
-              <div className="team-color-indicator" style={{ background: firstPlace.color, width: '32px', height: '32px' }} />
-              <div className="team-name" style={{ fontSize: '2rem' }}>{firstPlace.name}</div>
-              <div className="team-score" style={{ fontSize: '2.5rem' }}>
-                <Counter from={0} to={firstPlace.score} delay={3.5} />
-              </div>
-            </motion.div>
+            </div>
+          )}
 
-            <motion.div 
-              className="podium-block podium-block-1"
-              initial={{ height: 0 }}
-              animate={{ height: 250 }}
-              transition={{ delay: 1.5, duration: 1, ease: "easeOut" }}
-            >
-              <span className="podium-rank-text">1</span>
-            </motion.div>
-          </div>
-        )}
-
-        {/* 3rd Place */}
-        {thirdPlace && (
-          <div className="podium-column">
-            <motion.div 
-              className="team-card"
-              initial={{ y: -50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 3.1, type: "spring", bounce: 0.4 }}
-            >
+          {/* 1st Place */}
+          {firstPlace && (
+            <div className="podium-column" style={{ zIndex: 10 }}>
               <motion.div 
-                className="team-medal"
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 3.4 }}
+                className="team-card"
+                style={{ padding: '3rem 2rem 2rem', transform: 'translateY(-20px)' }}
+                initial={{ y: -50, opacity: 0 }}
+                animate={{ y: -20, opacity: 1 }}
+                transition={{ delay: 1.8, duration: 0.8, ease: "easeOut" }}
               >
-                <Medal size={32} color="#CD7F32" />
+                <motion.div 
+                  className="team-medal"
+                  initial={{ scale: 0, rotate: -180 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  transition={{ delay: 2.1, type: "spring", bounce: 0.5 }}
+                >
+                  <Trophy size={48} color="#FBBF24" />
+                </motion.div>
+                {isTie1 && <span className="tie-badge">Tie for 1st</span>}
+                <div className="team-name" style={{ fontSize: '2rem' }}>{firstPlace.name}</div>
+                <div className="team-score" style={{ fontSize: '3.5rem' }}>
+                  <Counter from={0} to={firstPlace.score} delay={2.4} />
+                </div>
               </motion.div>
-              {isTie2 && <span className="tie-badge">Tie for 2nd</span>}
-              <div className="team-color-indicator" style={{ background: thirdPlace.color }} />
-              <div className="team-name">{thirdPlace.name}</div>
-              <div className="team-score">
-                <Counter from={0} to={thirdPlace.score} delay={3.5} />
-              </div>
-            </motion.div>
 
+              <motion.div 
+                className="podium-block podium-block-1"
+                initial={{ height: 0 }}
+                animate={{ height: 240 }}
+                transition={{ delay: 1, duration: 1, ease: "easeOut" }}
+              >
+                <span className="podium-rank-text">1</span>
+              </motion.div>
+            </div>
+          )}
+
+          {/* 3rd Place */}
+          {thirdPlace && (
+            <div className="podium-column">
+              <motion.div 
+                className="team-card"
+                initial={{ y: -30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 2.5, duration: 0.8, ease: "easeOut" }}
+              >
+                <motion.div 
+                  className="team-medal"
+                  initial={{ scale: 0, rotate: -180 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  transition={{ delay: 2.8, type: "spring", bounce: 0.5 }}
+                >
+                  <Medal size={36} color="#D97706" />
+                </motion.div>
+                {isTie2 && <span className="tie-badge">Tie for 2nd</span>}
+                <div className="team-name">{thirdPlace.name}</div>
+                <div className="team-score">
+                  <Counter from={0} to={thirdPlace.score} delay={3.1} />
+                </div>
+              </motion.div>
+
+              <motion.div 
+                className="podium-block podium-block-3"
+                initial={{ height: 0 }}
+                animate={{ height: 120 }}
+                transition={{ delay: 1.8, duration: 1, ease: "easeOut" }}
+              >
+                <span className="podium-rank-text">3</span>
+              </motion.div>
+            </div>
+          )}
+        </div>
+      ) : (
+        <div className="round-winner-container">
+          <motion.div 
+            className="round-winner-card"
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 1, duration: 0.8, ease: "easeOut" }}
+          >
             <motion.div 
-              className="podium-block podium-block-3"
-              initial={{ height: 0 }}
-              animate={{ height: 130 }}
-              transition={{ delay: 2.5, duration: 0.6, ease: "easeOut" }}
+              variants={trophyVariants} 
+              initial="hidden" 
+              animate="visible"
             >
-              <span className="podium-rank-text">3</span>
+              <Trophy size={72} color="#FBBF24" style={{ filter: 'drop-shadow(0 4px 10px rgba(251, 191, 36, 0.4))' }} />
             </motion.div>
-          </div>
-        )}
-      </div>
+            <div className="round-winner-subtitle">🏆 Round Winner</div>
+            
+            {firstPlace && (
+              <>
+                <motion.div 
+                  className="team-name" 
+                  style={{ fontSize: '2.5rem', color: 'var(--primary-blue)' }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.5, duration: 0.8 }}
+                >
+                  {firstPlace.name}
+                </motion.div>
+                <motion.div 
+                  className="team-score" 
+                  style={{ fontSize: '4rem', marginTop: '1rem' }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 2 }}
+                >
+                  <Counter from={0} to={firstPlace.score} delay={2.5} />
+                </motion.div>
+              </>
+            )}
+          </motion.div>
+        </div>
+      )}
 
       {showButtons && (
         <motion.div 
           className="action-buttons"
-          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
           {isFinale ? (
-            <>
-              <h2 style={{ fontSize: '2.5rem', color: '#FFD700', margin: 0, textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>🎉 Congratulations!</h2>
-              <p style={{ fontSize: '1.5rem', color: 'white', margin: '0 0 1rem 0' }}>🙏 Thank You for Participating</p>
-              <button className="btn btn-primary" style={{ padding: '1rem 2rem', fontSize: '1.25rem', background: 'var(--primary-yellow)', color: 'black' }} onClick={onFinish}>
-                🔄 Start New Quiz
+            <div style={{ textAlign: 'center' }}>
+              <h2 style={{ fontSize: '2.5rem', color: 'var(--primary-blue)', margin: 0 }}>🎉 Congratulations!</h2>
+              <p style={{ fontSize: '1.25rem', color: 'var(--text-muted)', margin: '0.5rem 0 2rem 0' }}>Thank You for Participating</p>
+              <button className="btn btn-primary" style={{ padding: '1rem 2.5rem', fontSize: '1.25rem', background: 'var(--primary-yellow)', color: 'var(--text-main)', borderRadius: '99px', fontWeight: 700, boxShadow: '0 4px 15px rgba(0,0,0,0.1)' }} onClick={onFinish}>
+                Start New Quiz
               </button>
-            </>
+            </div>
           ) : (
-            <button className="btn btn-primary" style={{ padding: '1rem 2rem', fontSize: '1.25rem' }} onClick={onNext}>
-              Continue to Next Round
+            <button className="btn btn-primary" style={{ padding: '1rem 2.5rem', fontSize: '1.25rem', borderRadius: '99px', background: 'var(--primary-blue)', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', fontWeight: 700, border: 'none', color: 'white' }} onClick={onNext}>
+              Continue to Round {roundNumber + 1}
             </button>
           )}
         </motion.div>

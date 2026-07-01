@@ -4,116 +4,124 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(15, 23, 42, 0.85);
-  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   z-index: 50;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 3rem 1rem;
   overflow: hidden;
-  color: white;
+  color: var(--text-main);
+}
+
+.podium-bg-glow {
+  position: absolute;
+  top: -10vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 50vh;
+  background: radial-gradient(ellipse at center, rgba(55, 118, 171, 0.15) 0%, transparent 70%);
+  filter: blur(40px);
+  z-index: 1;
+  pointer-events: none;
 }
 
 .podium-header {
   text-align: center;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
   margin-bottom: 2rem;
-  z-index: 51;
 }
 
 .podium-title {
-  font-size: 4rem;
+  font-size: 3.5rem;
   font-weight: 800;
-  background: linear-gradient(135deg, #ffffff, #e2e8f0);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--text-main);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  text-shadow: 0 4px 20px rgba(0,0,0,0.5);
-  margin-top: 1rem;
+  margin: 0;
+  line-height: 1.2;
 }
 
 .podium-stage {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  gap: 1.5rem;
-  height: 50vh;
-  padding-bottom: 2rem;
-  z-index: 51;
+  gap: 2rem;
+  flex: 1;
+  z-index: 10;
+  margin-bottom: 4rem;
 }
 
 .podium-column {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 280px;
+  width: 260px;
+  position: relative;
 }
 
 .podium-block {
   width: 100%;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
+  border-radius: 12px 12px 0 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   padding-top: 1rem;
-  box-shadow: 0 -10px 30px rgba(0,0,0,0.3);
   position: relative;
   overflow: hidden;
-}
-
-.podium-block::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 100%);
-  pointer-events: none;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.05);
+  background: white;
+  border: 1px solid rgba(0,0,0,0.05);
+  border-bottom: none;
 }
 
 .podium-rank-text {
-  font-size: 3rem;
-  font-weight: 900;
-  opacity: 0.5;
-  margin-top: 0.5rem;
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: rgba(0,0,0,0.1);
+  margin: 0;
+  line-height: 1;
 }
 
 .podium-block-1 {
-  height: 250px;
-  background: linear-gradient(135deg, #FFD700, #DAA520);
-  border-top: 2px solid #FFF8DC;
+  height: 240px;
+  border-top: 4px solid var(--primary-yellow);
 }
 
 .podium-block-2 {
-  height: 180px;
-  background: linear-gradient(135deg, #C0C0C0, #A9A9A9);
-  border-top: 2px solid #F8F8FF;
+  height: 160px;
+  border-top: 4px solid #94A3B8;
 }
 
 .podium-block-3 {
-  height: 130px;
-  background: linear-gradient(135deg, #CD7F32, #A0522D);
-  border-top: 2px solid #FFE4C4;
+  height: 120px;
+  border-top: 4px solid #D97706;
 }
 
 .team-card {
-  background: var(--glass-bg);
+  background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-lg);
-  padding: 1.5rem;
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 2.5rem 1.5rem 1.5rem;
   width: 100%;
   text-align: center;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-  margin-bottom: 1rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  margin-bottom: 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
+  border: 1px solid rgba(0,0,0,0.05);
 }
 
 .team-medal {
@@ -122,80 +130,112 @@
   background: white;
   border-radius: 50%;
   padding: 0.5rem;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.team-color-indicator {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  margin-bottom: 0.5rem;
-  margin-top: 0.5rem;
-  box-shadow: 0 0 10px rgba(255,255,255,0.2);
-}
-
 .team-name {
-  font-size: 1.75rem;
-  font-weight: 800;
-  color: white;
-  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 0.25rem;
   word-wrap: break-word;
+  line-height: 1.2;
 }
 
 .team-score {
-  font-size: 2rem;
-  font-weight: 900;
+  font-size: 2.5rem;
+  font-weight: 800;
   font-family: 'JetBrains Mono', monospace;
-  color: var(--primary-yellow);
+  color: var(--primary-blue);
 }
 
-.action-buttons {
-  position: absolute;
-  bottom: 2rem;
+/* Round Winner specific styles */
+.round-winner-container {
   display: flex;
-  gap: 1rem;
-  z-index: 52;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  z-index: 10;
+  margin-bottom: 4rem;
+}
+
+.round-winner-card {
+  background: white;
+  border-radius: 24px;
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+  border: 1px solid rgba(0,0,0,0.05);
+  min-width: 400px;
+}
+
+.round-winner-subtitle {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
 }
 
 .tie-badge {
-  background: var(--crimson);
+  background: linear-gradient(135deg, var(--crimson), #991b1b);
   color: white;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 800;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
+  padding: 0.3rem 0.75rem;
+  border-radius: 99px;
   text-transform: uppercase;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 10px rgba(239, 68, 68, 0.4);
+  letter-spacing: 0.05em;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.action-buttons {
+  z-index: 52;
+  margin-top: 1rem;
 }
 
 @media (max-width: 1024px) {
   .podium-stage {
-    gap: 0.5rem;
+    gap: 1rem;
   }
   .podium-column {
-    width: 220px;
+    width: 250px;
   }
   .podium-title {
-    font-size: 3rem;
+    font-size: 3.5rem;
+  }
+  .team-name {
+    font-size: 1.5rem;
   }
 }
 
 @media (max-width: 768px) {
+  .podium-overlay {
+    padding: 2rem 1rem;
+    justify-content: center;
+  }
   .podium-stage {
     flex-direction: column;
     align-items: center;
     height: auto;
-    gap: 2rem;
-    padding-top: 2rem;
+    gap: 3rem;
   }
   .podium-block {
     display: none;
   }
   .podium-column {
     width: 90%;
+    max-width: 400px;
   }
   .team-card {
     margin-bottom: 0;
