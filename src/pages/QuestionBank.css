@@ -1,0 +1,312 @@
+.bank-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-bottom: 2rem;
+}
+
+.bank-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-radius: var(--radius-lg);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.bank-main {
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.bank-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--bg-main);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  flex: 1;
+  min-width: 200px;
+}
+
+.search-input {
+  border: none;
+  background: transparent;
+  color: var(--text-main);
+  outline: none;
+  width: 100%;
+}
+
+.filters {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.filter-select {
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--bg-main);
+  color: var(--text-main);
+  outline: none;
+}
+
+.questions-list {
+  overflow-x: auto;
+}
+
+.questions-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.questions-table th,
+.questions-table td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.questions-table th {
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+.sortable-header {
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s;
+}
+.sortable-header:hover {
+  color: var(--text-main);
+}
+.sortable-header-content {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.questions-table tr:hover td {
+  background: var(--bg-card-hover);
+}
+
+.badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: var(--bg-main);
+  border: 1px solid var(--border-color);
+}
+
+.difficulty-easy { color: var(--emerald); border-color: var(--emerald); }
+.difficulty-medium { color: var(--primary-yellow); border-color: var(--primary-yellow); }
+.difficulty-hard { color: var(--crimson); border-color: var(--crimson); }
+
+.table-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.table-actions .btn-icon-small {
+  width: 32px;
+  height: 32px;
+  background: var(--bg-main);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.table-actions .btn-icon-small:hover {
+  background: var(--bg-card-hover);
+  color: var(--text-main);
+}
+.table-actions .btn-icon-small.danger:hover {
+  background: var(--crimson);
+  color: white;
+  border-color: var(--crimson);
+}
+
+.quiz-checkbox {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: var(--primary-blue);
+}
+
+.questions-table tbody tr.selected-row {
+  background-color: rgba(55, 118, 171, 0.05); /* very light python blue */
+}
+
+.questions-table tbody tr.selected-row:hover {
+  background-color: rgba(55, 118, 171, 0.1);
+}
+
+/* Modal specific for Question form */
+.qb-modal-content {
+  background: var(--bg-card);
+  padding: 2rem;
+  border-radius: var(--radius-xl);
+  width: 100%;
+  max-width: 700px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--border-color);
+}
+
+/* Preview Modal Styling */
+.preview-modal-content {
+  background: var(--bg-main);
+  padding: 2rem;
+  border-radius: var(--radius-xl);
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--border-color);
+}
+
+.preview-question-text {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-top: 1rem;
+}
+
+.preview-question-code {
+  background: #1e1e1e;
+  color: #d4d4d4;
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.25rem;
+  margin-top: 1.5rem;
+  overflow-x: auto;
+}
+
+.preview-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.preview-option {
+  padding: 1.5rem;
+  background: var(--bg-card);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.preview-option.correct {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: var(--emerald);
+  color: var(--emerald);
+}
+
+.preview-option-letter {
+  font-weight: 800;
+  color: var(--text-muted);
+  background: var(--bg-main);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+}
+
+.preview-option.correct .preview-option-letter {
+  background: var(--emerald);
+  color: white;
+}
+
+.preview-explanation {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: rgba(55, 118, 171, 0.1);
+  border-left: 4px solid var(--primary-blue);
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  font-size: 1.25rem;
+}
+
+/* Forms */
+.qb-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.qb-full-width {
+  grid-column: span 2;
+}
+
+textarea.form-input {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.code-input {
+  font-family: 'JetBrains Mono', monospace;
+  background: #1e1e1e;
+  color: #d4d4d4;
+  border: 1px solid #333;
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.option-input-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.option-label {
+  font-weight: bold;
+  color: var(--text-muted);
+  width: 20px;
+}
+
+.file-input-hidden {
+  display: none;
+}

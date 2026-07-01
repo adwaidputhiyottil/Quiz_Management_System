@@ -1,0 +1,92 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-radius: var(--radius-lg);
+  margin-bottom: 2rem;
+}
+
+.dashboard-header h1 {
+  font-size: 1.5rem;
+  margin: 0;
+  background: linear-gradient(to right, var(--primary-blue), var(--primary-yellow));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header-right {
+  display: flex;
+  gap: 1rem;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.dashboard-card {
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+}
+
+.dashboard-card.main-control {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, rgba(55, 118, 171, 0.1), rgba(255, 212, 59, 0.1));
+  border: 1px solid var(--primary-blue);
+  text-align: center;
+  align-items: center;
+  padding: 3rem 2rem;
+}
+
+.dashboard-card.main-control h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.dashboard-card.main-control .text-muted {
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.card-header h2 {
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.card-actions {
+  margin-top: auto;
+  padding-top: 1.5rem;
+}
+
+.btn-large {
+  padding: 1rem 2rem;
+  font-size: 1.25rem;
+  border-radius: var(--radius-full);
+}
