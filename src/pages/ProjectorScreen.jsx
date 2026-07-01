@@ -9,29 +9,23 @@ const ProjectorScreen = () => {
   const { state, actions } = useQuiz();
   const { currentQuiz, settings, teams, questions } = state;
 
-  const [activeAwards, setActiveAwards] = React.useState({});
+  const [activeAward, setActiveAward] = React.useState(null);
 
   React.useEffect(() => {
     if (currentQuiz.awardTimestamp && currentQuiz.lastAwardedTeamId && currentQuiz.awardedPoints > 0) {
       const id = currentQuiz.awardTimestamp;
-      setActiveAwards(prev => ({
-        ...prev,
-        [id]: {
-          teamId: currentQuiz.lastAwardedTeamId,
-          points: currentQuiz.awardedPoints,
-        }
-      }));
+      setActiveAward({
+        id,
+        teamId: currentQuiz.lastAwardedTeamId,
+        points: currentQuiz.awardedPoints,
+      });
 
       const timer = setTimeout(() => {
-        setActiveAwards(prev => {
-          const newState = { ...prev };
-          delete newState[id];
-          return newState;
-        });
+        setActiveAward(null);
       }, 2000);
       return () => clearTimeout(timer);
     }
-  }, [currentQuiz.awardTimestamp, currentQuiz.lastAwardedTeamId]);
+  }, [currentQuiz.awardTimestamp, currentQuiz.lastAwardedTeamId, currentQuiz.awardedPoints]);
 
   const sortedTeams = [...teams].sort((a, b) => b.score - a.score);
   const highestScore = sortedTeams.length > 0 ? sortedTeams[0].score : 0;
@@ -170,17 +164,16 @@ const ProjectorScreen = () => {
                 </AnimatePresence>
 
                 <div style={{ position: 'absolute', bottom: '3rem', left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', gap: '1rem', zIndex: 100, alignItems: 'center' }}>
-                  <AnimatePresence>
-                    {Object.keys(activeAwards).map(awardKey => {
-                      const award = activeAwards[awardKey];
-                      const team = teams.find(t => t.id === award.teamId);
+                  <AnimatePresence mode="wait">
+                    {activeAward && (() => {
+                      const team = teams.find(t => t.id === activeAward.teamId);
                       if (!team) return null;
                       return (
                         <motion.div
-                          key={awardKey}
+                          key={activeAward.id}
                           initial={{ opacity: 0, y: 50, scale: 0.5, rotateX: -30 }}
                           animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
-                          exit={{ opacity: 0, y: -30, scale: 0.8 }}
+                          exit={{ opacity: 0, y: 30, scale: 0.8 }}
                           transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                           style={{
                             background: 'rgba(255, 255, 255, 0.95)',
@@ -196,10 +189,10 @@ const ProjectorScreen = () => {
                             border: `4px solid ${team.color}`
                           }}
                         >
-                          <span style={{ color: 'var(--emerald)' }}>{award.points} points</span> added to <span style={{ color: team.color }}>{team.name}</span>
+                          <span style={{ color: 'var(--emerald)' }}>{activeAward.points} points</span> added to <span style={{ color: team.color }}>{team.name}</span>
                         </motion.div>
                       );
-                    })}
+                    })()}
                   </AnimatePresence>
                 </div>
               </main>
@@ -219,8 +212,7 @@ const ProjectorScreen = () => {
                     <tbody>
                       {sortedTeams.map((team, index) => {
                         const isFirstPlace = team.score > 0 && team.score === highestScore;
-                        const awardKey = Object.keys(activeAwards).find(k => activeAwards[k].teamId === team.id);
-                        const isRecentlyAwarded = !!awardKey;
+                        const isRecentlyAwarded = activeAward && activeAward.teamId === team.id;
 
                         return (
                           <tr key={team.id} className={`pl-row ${isFirstPlace ? 'pl-first' : ''}`} style={{ position: 'relative' }}>

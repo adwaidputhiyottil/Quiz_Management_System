@@ -5,10 +5,12 @@ import QuestionBank from './pages/QuestionBank';
 import ControlCenter from './pages/ControlCenter';
 import ManageTeams from './pages/ManageTeams';
 import Settings from './pages/Settings';
+import AudioManager from './components/AudioManager';
 
 function App() {
   return (
     <div className="app-container">
+      <AudioManager />
       {/* Background Animation */}
       <div className="particle-bg">
         {Array.from({ length: 15 }).map((_, i) => (

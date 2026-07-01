@@ -12,9 +12,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 3rem 1rem;
+  padding: 1.5rem 1rem;
   overflow: hidden;
   color: var(--text-main);
+  box-sizing: border-box;
 }
 
 .podium-bg-glow {
@@ -36,8 +37,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-shrink: 0;
 }
 
 .podium-title {
@@ -57,7 +59,8 @@
   gap: 2rem;
   flex: 1;
   z-index: 10;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
+  min-height: 0; /* Allows flex items to shrink if necessary */
 }
 
 .podium-column {
@@ -160,19 +163,21 @@
   justify-content: center;
   flex: 1;
   z-index: 10;
-  margin-bottom: 4rem;
+  margin-bottom: 1.5rem;
+  min-height: 0;
 }
 
 .round-winner-card {
   background: white;
   border-radius: 24px;
-  padding: 4rem;
+  padding: 2.5rem 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   box-shadow: 0 20px 40px rgba(0,0,0,0.05);
   border: 1px solid rgba(0,0,0,0.05);
   min-width: 400px;
+  max-height: 100%;
 }
 
 .round-winner-subtitle {
@@ -182,7 +187,7 @@
   letter-spacing: 0.1em;
   font-weight: 600;
   margin-top: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .tie-badge {
@@ -201,7 +206,11 @@
 
 .action-buttons {
   z-index: 52;
-  margin-top: 1rem;
+  margin-top: 0;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media (max-width: 1024px) {
