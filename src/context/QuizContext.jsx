@@ -44,6 +44,7 @@ const defaultState = {
   rounds: [], // Current quiz structure
   currentQuiz: {
     isActive: false,
+    hideQuestion: true,
     roundIndex: 0,
     questionIndex: 0,
     questionState: 'hidden', // 'hidden', 'timer', 'revealed', 'completed'
@@ -253,6 +254,7 @@ export const QuizProvider = ({ children }) => {
     dispatchUpdate(prev => ({
       ...prev,
       currentQuiz: {
+        ...prev.currentQuiz,
         isActive: true,
         roundIndex: 0,
         questionIndex: 0,

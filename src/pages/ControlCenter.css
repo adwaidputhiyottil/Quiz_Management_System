@@ -22,6 +22,34 @@
   gap: 1rem;
 }
 
+.hide-question-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-main);
+  color: var(--text-main);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.hide-question-toggle.active {
+  background: rgba(55, 118, 171, 0.16);
+  border-color: var(--primary-blue);
+  color: var(--primary-blue);
+}
+
+.toggle-state {
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.08);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
 .control-stats {
   display: flex;
   gap: 2rem;

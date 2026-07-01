@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
-  ArrowLeft, Play, SkipForward, SkipBack, Eye, 
+  ArrowLeft, Play, SkipForward, SkipBack, Eye, EyeOff,
   Pause, RotateCcw, Maximize, Trophy, CheckCircle
 } from 'lucide-react';
 import { useQuiz, RoundEngine } from '../context/QuizContext';
@@ -78,6 +78,15 @@ const ControlCenter = () => {
             <ArrowLeft size={20} /> Back
           </Link>
           <h2>Live Control Center</h2>
+          <button
+            type="button"
+            className={`hide-question-toggle ${currentQuiz.hideQuestion ? 'active' : ''}`}
+            onClick={() => actions.setQuizState({ hideQuestion: !currentQuiz.hideQuestion })}
+          >
+            {currentQuiz.hideQuestion ? <EyeOff size={16} /> : <Eye size={16} />}
+            <span>Hide Question</span>
+            <span className="toggle-state">{currentQuiz.hideQuestion ? 'ON' : 'OFF'}</span>
+          </button>
         </div>
         <div className="control-stats">
           <div className="stat-item">

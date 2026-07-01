@@ -8,6 +8,22 @@
   background: transparent;
 }
 
+.projector-waiting-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  width: 100vw;
+  height: 100vh;
+  background: var(--bg-main);
+}
+
+.projector-live-screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 .projector-header {
   padding: 1.5rem 3rem;
   display: flex;

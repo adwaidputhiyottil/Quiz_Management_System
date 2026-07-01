@@ -4,129 +4,239 @@
   justify-content: center;
   width: 100%;
   height: 100%;
+  min-height: 100vh;
   position: relative;
   overflow: hidden;
-  border-radius: var(--radius-xl);
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(8, 15, 35, 0.92), rgba(15, 23, 42, 0.92));
 }
 
 .qw-background {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   z-index: 1;
   pointer-events: none;
+  overflow: hidden;
 }
 
-.qw-blob {
+.qw-grid {
   position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: linear-gradient(180deg, rgba(0,0,0,0.9), transparent 85%);
+}
+
+.qw-keyword {
+  position: absolute;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.38);
+  text-transform: lowercase;
+  user-select: none;
+}
+
+.qw-keyword-0 { top: 14%; left: 10%; }
+.qw-keyword-1 { top: 18%; right: 12%; }
+.qw-keyword-2 { bottom: 22%; left: 8%; }
+.qw-keyword-3 { bottom: 16%; right: 18%; }
+
+.qw-particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.4;
-}
-
-.qw-blob-1 {
-  top: -10%;
-  left: -10%;
-  width: 500px;
-  height: 500px;
-  background: var(--primary-blue);
-}
-
-.qw-blob-2 {
-  bottom: -20%;
-  right: -10%;
-  width: 600px;
-  height: 600px;
-  background: var(--primary-yellow);
-  opacity: 0.3;
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 12px rgba(55, 118, 171, 0.4);
 }
 
 .qw-card {
   position: relative;
   z-index: 10;
-  background: var(--glass-bg);
+  width: min(900px, 100%);
+  background: rgba(15, 23, 42, 0.78);
   backdrop-filter: blur(16px);
-  border: 1px solid var(--glass-border);
-  padding: 4rem 3rem;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  padding: 3.5rem 3rem;
   border-radius: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  max-width: 800px;
-  width: 90%;
+  box-shadow: 0 20px 50px rgba(2, 6, 23, 0.35);
 }
 
 .qw-icon-wrapper {
-  color: var(--primary-yellow);
-  margin-bottom: 2rem;
-  filter: drop-shadow(0 0 15px rgba(255, 212, 59, 0.4));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 92px;
+  height: 92px;
+  border-radius: 999px;
+  background: rgba(255, 212, 59, 0.14);
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(255, 212, 59, 0.3);
+}
+
+.qw-python-icon {
+  font-size: 3rem;
+  filter: drop-shadow(0 0 14px rgba(255, 212, 59, 0.24));
+}
+
+.qw-event-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.26em;
+  color: var(--primary-blue);
+  margin-bottom: 0.5rem;
+}
+
+.qw-event-subtitle {
+  font-size: 1.15rem;
+  color: rgba(226, 232, 240, 0.8);
+  margin: 0 0 1.4rem;
+  max-width: 640px;
+  line-height: 1.5;
 }
 
 .qw-title {
-  font-size: 4.5rem;
+  font-size: clamp(2.8rem, 4vw, 4.4rem);
   font-weight: 900;
-  margin: 0 0 1rem 0;
-  letter-spacing: 2px;
+  margin: 0 0 0.6rem;
+  letter-spacing: 0.02em;
   line-height: 1.1;
-  /* Uses global text-gradient */
 }
 
-.qw-subtitle {
-  font-size: 1.75rem;
-  color: var(--text-muted);
-  margin: 0 0 3rem 0;
-  max-width: 600px;
-  line-height: 1.4;
+.qw-waiting-subtitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: rgba(248, 250, 252, 0.88);
+  margin: 0 0 1rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .qw-phrase-container {
-  height: 3rem;
+  min-height: 3rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 1rem;
 }
 
 .qw-phrase {
-  font-size: 2rem;
+  font-size: 1.2rem;
   font-weight: 700;
-  color: var(--text-main);
+  color: #f8fafc;
   display: flex;
   align-items: center;
-  gap: 0.25rem;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 1rem 2rem;
-  border-radius: 99px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 0.4rem;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.8rem 1.2rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .qw-dots {
   display: flex;
-  min-width: 1.5rem;
+  align-items: center;
+  gap: 0.2rem;
+  margin-left: 0.25rem;
+  font-size: 0.8rem;
+}
+
+.qw-loader {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0.4rem 0 1.5rem;
+}
+
+.qw-loader-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--primary-blue);
+  display: inline-block;
+}
+
+.qw-terminal-card {
+  width: 100%;
+  max-width: 720px;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: rgba(2, 6, 23, 0.88);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+.qw-terminal-bar {
+  display: flex;
+  gap: 0.45rem;
+  padding: 0.75rem 1rem;
+  background: rgba(15, 23, 42, 0.95);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.16);
+}
+
+.qw-terminal-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  display: inline-block;
+}
+
+.qw-dot-red { background: #ef4444; }
+.qw-dot-yellow { background: #f59e0b; }
+.qw-dot-green { background: #10b981; }
+
+.qw-terminal-body {
+  padding: 1rem 1.1rem 1.2rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+  color: #d1fae5;
+  text-align: left;
+  min-height: 3.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.qw-terminal-text {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.qw-cursor {
+  width: 0.65rem;
+  height: 1.1rem;
+  background: #f8fafc;
+  display: inline-block;
+  border-radius: 2px;
 }
 
 @media (max-width: 1024px) {
-  .qw-title {
-    font-size: 3.5rem;
-  }
-  .qw-subtitle {
-    font-size: 1.5rem;
-  }
-  .qw-phrase {
-    font-size: 1.5rem;
+  .qw-card {
+    padding: 2.75rem 2rem;
   }
 }
 
 @media (max-width: 768px) {
-  .qw-title {
-    font-size: 2.5rem;
+  .qw-container {
+    padding: 1rem;
   }
-  .qw-subtitle {
-    font-size: 1.25rem;
-  }
+
   .qw-card {
-    padding: 2rem 1.5rem;
+    padding: 2rem 1.25rem;
+  }
+
+  .qw-event-subtitle {
+    font-size: 1rem;
+  }
+
+  .qw-terminal-body {
+    font-size: 0.95rem;
   }
 }
